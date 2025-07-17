@@ -1,0 +1,96 @@
+﻿//
+// Created by lahcen on 18/07/2025.
+//
+
+#include "vector2.hpp"
+using namespace Vector;//
+template <typename  T>
+vector2<T>::vector2(T x, T y)
+{
+    this->x = x;
+    this->y = y;
+}
+
+template <typename T>
+T constexpr vector2<T>::operator[](const int& index) const
+{
+    return index == 0 ? this->x : this->y;
+}
+
+template <typename T>
+auto vector2<T>::getMagnitude() const
+{
+    return sqrt(pow(this->x, 2) + pow(this->y, 2));
+}
+
+template <typename T>
+ bool vector2<T>::isNormalized() const
+{
+    return this->getMagnitude()==1?true:false;
+}
+
+template <typename T>
+vector2<T> vector2<T>::normalize() const
+{
+    auto const magnitude = this->getMagnitude();
+    return vector2<T>(this->x/magnitude, this->y/magnitude);
+}
+
+template <typename T>
+vector2<T> vector2<T>::operator+(const vector2& other) const
+{
+    return vector2(this->x + other.x, this->y + other.y);
+}
+
+template <typename T>
+vector2<T>& vector2<T>::operator+=(const vector2& other) 
+{
+    return vector2(this->x + other.x, this->y + other.y);
+}
+
+template <typename T>
+vector2<T> vector2<T>::operator-(const vector2& other) const
+{
+    return vector2(this->x - other.x, this->y - other.y);
+}
+
+template <typename T>
+vector2<T>& vector2<T>::operator-=(const vector2& other)
+{
+    return vector2(this->x - other.x, this->y - other.y);
+}
+
+template <typename T>
+vector2<T> vector2<T>::operator*(const vector2& other) const
+{
+    return vector2(this->x * other.x, this->y * other.y);
+}
+
+template <typename T>
+vector2<T>& vector2<T>::operator*=(const vector2& other)
+{
+    return vector2(this->x * other.x, this->y * other.y);
+}
+
+template <typename T>
+bool vector2<T>::operator==(const vector2& other) const
+{ return this->x == other.x && this->y == other.y; }
+
+
+template <typename T>
+bool vector2<T>::operator!=(const vector2& other) const
+{
+    return this->x != other.x || this->y != other.y;
+}
+
+template <typename T>
+auto vector2<T>::dot(const vector2& other) const
+{
+    return this->x * other.x + this->y * other.y;
+}
+
+template <typename T>
+auto vector2<T>::Eucdistance(const vector2& other) const
+{
+    return sqrt(pow(this->x - other.x, 2) + pow(this->y - other.y, 2));
+}
