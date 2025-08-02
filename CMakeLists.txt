@@ -3,5 +3,7 @@ project(LinearAlgebra)
 
 set(CMAKE_CXX_STANDARD 26)
 
-add_library(STATIC vectors/vector2.cpp)
+add_library(STATIC vectors/vector2.cpp
+        Matrix/Mat2.cpp
+        Matrix/Mat2.hpp)
 

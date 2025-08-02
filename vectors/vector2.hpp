@@ -4,13 +4,14 @@
 
 #ifndef VECTOR2_HPP
 #define VECTOR2_HPP
+#include <type_traits>
 
 
 namespace Vector {
 
 
-    template<typename T>
-        struct vector2:vector
+    template<typename T> requires std::is_arithmetic_v<T>
+        struct vector2
     {
     private:
         T x;
@@ -31,17 +32,27 @@ namespace Vector {
         vector2 operator-(const vector2& other) const;
         vector2& operator-=(const vector2& other);
 
+        vector2& cross(vector2& other);
         vector2 operator*(const vector2& other) const;
         vector2& operator*=(const vector2& other);
-
+        static vector2 identity();
+        static vector2 zero();
         bool operator==(const vector2& other) const;
         bool operator!=(const vector2& other) const;
-
+        /**
+         * dot product of two vectors
+         * @param other 
+         * @return 
+         */
         auto dot(const vector2& other) const;
-
+        /**
+         * method returns the euclidian distance  
+         * @param other 
+         * @return 
+         */
         auto Eucdistance(const vector2& other) const;
     };
-
+;
 
 
 } // Vector
