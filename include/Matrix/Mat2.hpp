@@ -7,13 +7,12 @@
 #include<concepts>
 #include <utility>
 
-namespace Matrix
+namespace LinearAlgebra::Matrix
 {
     template <typename T> requires std::is_arithmetic_v<T>
     struct Mat2
     {
     private:
-        T matrix[2][2];
         T a,b,c,d;
     
     public:

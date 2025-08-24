@@ -2,8 +2,14 @@ cmake_minimum_required(VERSION 3.30)
 project(LinearAlgebra)
 
 set(CMAKE_CXX_STANDARD 26)
+set(CMAKE_BUILD_TYPE Release)
 
-add_library(STATIC vectors/vector2.cpp
+add_library(linearalgebra  vectors/vector2.cpp
         Matrix/Mat2.cpp
-        Matrix/Mat2.hpp)
-
+        Matrix/Mat3.cpp
+        vectors/vector3.cpp
+)
+include_directories(include)
+target_include_directories(linearalgebra PUBLIC
+        include/
+)

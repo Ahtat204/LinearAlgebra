@@ -2,8 +2,8 @@
 // Created by lahce on 25/07/2025.
 //
 
-#include "Mat2.hpp"
- using namespace Matrix;
+#include "Matrix/Mat2.hpp"
+ using namespace LinearAlgebra::Matrix;
 template <typename T> requires std::is_arithmetic_v<T>
     Mat2<T>::Mat2(T a, T b, T c, T d)
 {

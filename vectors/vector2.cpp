@@ -2,10 +2,11 @@
 // Created by lahcen on 18/07/2025.
 //
 
-#include "vector2.hpp"
-using namespace Vector;//
-template<typename T> requires std::is_arithmetic_v<T> 
-vector2<T>::vector2(T x, T y)
+#include "vectors/vector2.hpp"
+//
+using namespace LinearAlgebra::vector;
+template<typename T> requires std::is_arithmetic_v<T>
+vector2<T>::vector2(T x, T  y )
 {
     this->x = x;
     this->y = y;
@@ -61,9 +62,9 @@ vector2<T>& vector2<T>::operator-=(const vector2& other)
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-vector2<T>& vector2<T>::cross(vector2& other)
+vector2<T>& vector2<T>::cross(vector2<T>& other)
 {
-    return vector2(this->y * other.x, this->x * other.y);
+    return vector::vector2(this->y * other.x, this->x * other.y);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
@@ -73,30 +74,30 @@ vector2<T> vector2<T>::operator*(const vector2& other) const
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-vector2<T>& vector2<T>::operator*=(const vector2& other)
+vector2<T>& vector2<T>::operator*=(const vector2<T>& other)
 {
-    return vector2(this->x * other.x, this->y * other.y);
+    return vector::vector2(this->x * other.x, this->y * other.y);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-bool vector2<T>::operator==(const vector2& other) const
+bool vector2<T>::operator==(const vector2<T>& other) const
 { return this->x == other.x && this->y == other.y; }
 
 
 template <typename T> requires std::is_arithmetic_v<T>
-bool vector2<T>::operator!=(const vector2& other) const
+bool vector2<T>::operator!=(const vector2<T>& other) const
 {
     return this->x != other.x || this->y != other.y;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-auto vector2<T>::dot(const vector2& other) const
+auto vector2<T>::dot(const vector2<T>& other) const
 {
     return this->x * other.x + this->y * other.y;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-auto vector2<T>::Eucdistance(const vector2& other) const
+auto vector2<T>::euclidianDistance(const vector2& other) const
 {
     return sqrt(pow(this->x - other.x, 2) + pow(this->y - other.y, 2));
 }
