@@ -5,7 +5,7 @@
 #ifndef MAT3_HPP
 #define MAT3_HPP
 
-namespace LinearAlgebra::Matrix {
+namespace LinearAlgebra {
 
 struct Mat3 {
 

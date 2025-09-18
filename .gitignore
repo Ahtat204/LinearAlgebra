@@ -1,3 +1,4 @@
 ﻿# Default ignored files
 cmake-build-debug
 .idea
+Main.cpp

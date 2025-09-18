@@ -4,7 +4,7 @@
 
 #include "vectors/vector2.hpp"
 //
-using namespace LinearAlgebra::vector;
+using namespace LinearAlgebra;
 template<typename T> requires std::is_arithmetic_v<T>
 vector2<T>::vector2(T x, T  y )
 {
@@ -64,7 +64,7 @@ vector2<T>& vector2<T>::operator-=(const vector2& other)
 template <typename T> requires std::is_arithmetic_v<T>
 vector2<T>& vector2<T>::cross(vector2<T>& other)
 {
-    return vector::vector2(this->y * other.x, this->x * other.y);
+    return vector2(this->y * other.x, this->x * other.y);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
@@ -76,7 +76,12 @@ vector2<T> vector2<T>::operator*(const vector2& other) const
 template <typename T> requires std::is_arithmetic_v<T>
 vector2<T>& vector2<T>::operator*=(const vector2<T>& other)
 {
-    return vector::vector2(this->x * other.x, this->y * other.y);
+    return vector2(this->x * other.x, this->y * other.y);
+}
+
+template <typename T> requires std::is_arithmetic_v<T>
+vector2<T> vector2<T>::random()
+{
 }
 
 template <typename T> requires std::is_arithmetic_v<T>

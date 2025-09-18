@@ -4,7 +4,7 @@
 
 #include "vectors/vector3.hpp"
 
-using namespace LinearAlgebra::vector ;
+using namespace LinearAlgebra ;
 template <typename T> requires std::is_arithmetic_v<T>
   vector3<T>::vector3(const T x, const T y, const T z)
 {

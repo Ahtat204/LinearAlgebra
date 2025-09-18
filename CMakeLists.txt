@@ -8,6 +8,9 @@ add_library(linearalgebra  vectors/vector2.cpp
         Matrix/Mat2.cpp
         Matrix/Mat3.cpp
         vectors/vector3.cpp
+        quaternions/quaternions.cpp
+        Matrix/Mat4.cpp
+        include/Matrix/Mat4.hpp
 )
 include_directories(include)
 target_include_directories(linearalgebra PUBLIC

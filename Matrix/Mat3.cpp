@@ -4,4 +4,4 @@
 
 #include "Matrix/Mat3.hpp"
 
-using namespace LinearAlgebra::Matrix;
+using namespace LinearAlgebra;
