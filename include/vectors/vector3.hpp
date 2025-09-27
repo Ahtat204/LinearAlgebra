@@ -70,22 +70,24 @@ public:
      * @return Normalized vector
      */
     [[nodiscard]] vector3 normalize() const;
-
     // Vector arithmetic operators
     vector3 operator+(const vector3& other) const; ///< Vector addition
     vector3& operator+=(const vector3& other);    ///< In-place vector addition
-
     vector3 operator-(const vector3& other) const; ///< Vector subtraction
     vector3& operator-=(const vector3& other);    ///< In-place vector subtraction
-
     vector3& cross(vector3& other);               ///< Cross product (perpendicular vector)
     vector3 operator*(const vector3& other) const; ///< Component-wise multiplication
     vector3& operator*=(const vector3& other);     ///< In-place component-wise multiplication
 
     // Static vectors for convenience
-    static vector3 identity(); ///< Vector with all components equal to 1
-    static vector3 zero();     ///< Vector with all components equal to 0
-
+    static constinit vector3 identity=vector3(1,1,1); ///< Vector with all components equal to 1
+    static constinit vector3 zero=vector3(0,0,0);     ///< Vector with all components equal to 0
+    static constinit vector3  up = vector3(0,0,1);
+    static constinit vector3 down = vector3(0,0,-1);
+    static constinit vector3  right =vector3(0,1,0);
+    static constinit vector3 left = vector3(0,-1,0);
+    static constinit vector3 forward = vector3(-1,0,0);
+    static constinit vector3 backward = vector3(1,0,0);
     // Comparison operators
     bool operator==(const vector3& other) const; ///< Equality comparison
     bool operator!=(const vector3& other) const; ///< Inequality comparison

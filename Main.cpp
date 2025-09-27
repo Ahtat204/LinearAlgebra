@@ -5,7 +5,7 @@
  using namespace LinearAlgebra;
  
  
-vector2 vec(2,2);
+
 
  
     

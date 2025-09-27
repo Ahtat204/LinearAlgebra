@@ -90,19 +90,19 @@ Mat2<T> Mat2<T>::inverse()
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-Mat2<T> Mat2<T>::identity()
+consteval Mat2<T> Mat2<T>::identity()
 {
     return Mat2(1,0,0,1);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-Mat2<T> Mat2<T>::zero()
+consteval Mat2<T> Mat2<T>::zero()
 {
     return Mat2(0,0,0,0);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-Mat2<T> Mat2<T>::ones()
+consteval Mat2<T> Mat2<T>::ones()
 {
     return Mat2(1,1,1,1);
 }

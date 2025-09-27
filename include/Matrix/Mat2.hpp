@@ -30,9 +30,9 @@ namespace LinearAlgebra
         auto determinant();
         Mat2 transpose();
         Mat2 inverse();
-        static Mat2 identity();
-        static Mat2 zero();
-        static Mat2 ones();
+        static consteval  Mat2 identity();
+        static consteval Mat2 zero();
+        static consteval Mat2 ones();
         static Mat2 rotation(T angle);
         static Mat2 scaling(T x, T y);
         static Mat2 translate(T x, T y);
