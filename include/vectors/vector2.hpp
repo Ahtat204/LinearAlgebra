@@ -5,6 +5,8 @@
 #ifndef VECTOR2_HPP
 #define VECTOR2_HPP
 #include <type_traits>
+#include <Matrix/Mat2.hpp>
+
 
 namespace LinearAlgebra
 {
@@ -85,7 +87,8 @@ namespace LinearAlgebra
         vector2& operator*=(const vector2& other); ///< In-place component-wise multiplication
         explicit operator vector2() const;///<
         // Predefined static vectors for convenience
-        static constinit vector2 identity = vector2(1, 1); ///< Vector with components (1,1)
+        static constinit vector2 identity = vector2(1, 1);
+         vector2& operator*(const Mat2<T>& other);///< Vector with components (1,1)
         static constinit vector2 zero = vector2(0, 0); ///< Vector with components (0,0)
         static constinit vector2 up = vector2(0, 1); ///< Vector pointing up (0,1)
         static constinit vector2 down = vector2(0, -1); ///< Vector pointing down (0,-1)
@@ -94,6 +97,7 @@ namespace LinearAlgebra
         static vector2 random(T min ,T max); ///< Returns a random vector
         bool operator==(const vector2& other) const; ///< Equality comparison
         bool operator!=(const vector2& other) const; ///< Inequality comparison
+        vector2 rotate(T angle) const;
         /**
          * @brief Computes the dot product of this vector with another.
          * @param other The vector to dot with

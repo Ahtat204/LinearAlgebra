@@ -4,7 +4,10 @@
 
 #include "Matrix/Mat2.hpp"
 
+#include <cmath>
 #include <stdexcept>
+#include <valarray>
+#include <Matrix/Mat3.hpp>
 using namespace LinearAlgebra;
 template <typename T> requires std::is_arithmetic_v<T>
     Mat2<T>::Mat2(T a, T b, T c, T d)
@@ -60,7 +63,6 @@ Mat2<T> Mat2<T>::operator*(auto& scalar)
 {
     return Mat2(scalar*this->a, scalar*this->b, scalar*this->c, scalar*this->d);
 }
-
 template <typename T> requires std::is_arithmetic_v<T>
 T Mat2<T>::operator[](const std::pair<int, int>& index)
 {
@@ -88,45 +90,23 @@ Mat2<T> Mat2<T>::inverse()
     auto tcoMatrice=coMatrice.transpose();
     return (1/det)*tcoMatrice;
 }
-
 template <typename T> requires std::is_arithmetic_v<T>
-consteval Mat2<T> Mat2<T>::identity()
+Mat2<T> Mat2<T>::rotation(float angle)
 {
-    return Mat2(1,0,0,1);
-}
-
-template <typename T> requires std::is_arithmetic_v<T>
-consteval Mat2<T> Mat2<T>::zero()
-{
-    return Mat2(0,0,0,0);
-}
-
-template <typename T> requires std::is_arithmetic_v<T>
-consteval Mat2<T> Mat2<T>::ones()
-{
-    return Mat2(1,1,1,1);
-}
-
-template <typename T> requires std::is_arithmetic_v<T>
-Mat2<T> Mat2<T>::rotation(T angle)
-{
+    return Mat2(std::cos(angle), -std::sin(angle), std::sin(angle), std::cos(angle));
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 Mat2<T> Mat2<T>::scaling(T x, T y)
 {
+    return Mat2(x,0,0, y);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-Mat2<T> Mat2<T>::translate(T x, T y)
+Mat2<T> Mat2<T>::translation(T x, T y)
 {
+    return Mat3();//needs 3x3 matrix 
 }
-
-template <typename T> requires std::is_arithmetic_v<T>
-Mat2<T> Mat2<T>::rotate(T angle)
-{
-}
-
 template <typename T> requires std::is_arithmetic_v<T>
 Mat2<T> Mat2<T>::projection(T x, T y, T width, T height)
 {

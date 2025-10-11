@@ -6,6 +6,7 @@
 #include<random>
 #include <stdexcept>
 #include<algorithm>
+#include <Matrix/Mat2.hpp>
 //
 using namespace LinearAlgebra;
 template<typename T> requires std::is_arithmetic_v<T>
@@ -117,6 +118,12 @@ vector2<T>::operator vector2() const
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
+vector2<T>& vector2<T>::operator*(const Mat2<T>& other)
+{
+    return vector2(this->x * other.x, this->y * other.y);
+}
+
+template <typename T> requires std::is_arithmetic_v<T>
  vector2<T> vector2<T>::random(T min ,T max)
 {
     static std::random_device rd;
@@ -139,6 +146,12 @@ template <typename T> requires std::is_arithmetic_v<T>
 bool vector2<T>::operator!=(const vector2<T>& other) const
 {
     return this->x != other.x || this->y != other.y;
+}
+
+template <typename T> requires std::is_arithmetic_v<T>
+vector2<T> vector2<T>::rotate(T angle) const
+{
+    return Mat2<T>::rotation(angle)*this;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
