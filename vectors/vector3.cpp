@@ -79,7 +79,7 @@ vector3<T>& vector3<T>::operator-=(const vector3& other)
 template <typename T> requires std::is_arithmetic_v<T>
 vector3<T>& vector3<T>::cross(vector3& other)
 {
-    
+    return vector3(this->y * other.z - this->z * other.y,this->x*other.z-this->z*other.x,this->x*other.y - this->y*other.x);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
@@ -122,7 +122,7 @@ auto vector3<T>::euclidianDistance(const vector3& other) const
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-constexpr T vector3<T>::operator[](int i) const
+constexpr T vector3<T>::operator[](const int i) const
 {
     switch (i)
     {

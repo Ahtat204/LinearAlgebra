@@ -75,10 +75,9 @@ public:
     vector3& operator+=(const vector3& other);    ///< In-place vector addition
     vector3 operator-(const vector3& other) const; ///< Vector subtraction
     vector3& operator-=(const vector3& other);    ///< In-place vector subtraction
-    vector3& cross(vector3& other);               ///< Cross product (perpendicular vector)
+    vector3& cross(vector3& other);               ///< Cross product (perpendicular vector) ,(this) x (other)
     vector3 operator*(const vector3& other) const; ///< Component-wise multiplication
     vector3& operator*=(const vector3& other);     ///< In-place component-wise multiplication
-
     // Static vectors for convenience
     static constinit vector3 identity=vector3(1,1,1); ///< Vector with all components equal to 1
     static constinit vector3 zero=vector3(0,0,0);     ///< Vector with all components equal to 0
