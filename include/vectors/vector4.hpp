@@ -98,6 +98,7 @@ public:
     auto euclidianDistance(const vector4& other) const;
 };
 
+
 } // namespace LinearAlgebra::vector
 
 // Aliases for common types
