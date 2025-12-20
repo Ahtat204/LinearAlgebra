@@ -12,7 +12,6 @@ vector4<T>::vector4(T x, T y, T z, T w)
     this->y = y;
     this->z = z;
     this->w = w;
-    
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
@@ -22,7 +21,6 @@ vector4<T>::vector4(const T& x)
     this->y = x;
     this->z = x;
     this->w = x;
-    
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
@@ -30,15 +28,15 @@ constexpr T vector4<T>::operator[](int i) const
 {
     switch (i)
     {
-        case 0:
-            return this->x;
-        case 1:
-            return this->y;
-        case 2:
-            return this->z;
-        case 3:
-            return this->w;
-        default: return 0;
+    case 0:
+        return this->x;
+    case 1:
+        return this->y;
+    case 2:
+        return this->z;
+    case 3:
+        return this->w;
+    default: return 0;
     }
 }
 
@@ -51,7 +49,7 @@ auto vector4<T>::getMagnitude() const
 template <typename T> requires std::is_arithmetic_v<T>
 bool vector4<T>::isNormalized() const
 {
-    return (this->getMagnitude() == 1?true:false);
+    return (this->getMagnitude() == 1 ? true : false);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
@@ -65,21 +63,28 @@ vector4<T> vector4<T>::normalize() const
 template <typename T> requires std::is_arithmetic_v<T>
 vector4<T> vector4<T>::operator+(const vector4& other) const
 {
+    return vector4(this->x + other.x, this->y + other.y, this->z + other.z, this->w);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 vector4<T>& vector4<T>::operator+=(const vector4& other)
 {
+   return *this = *this + other;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 vector4<T> vector4<T>::operator-(const vector4& other) const
 {
+    return vector4(this->x - other.x, this.y - other.y, this.z - other.z, this.w - other.w);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 vector4<T>& vector4<T>::operator-=(const vector4& other)
 {
+    return vector4(this->x -= other.x,
+                   this->y -= other.y,
+                   this->z -= other.z,
+                   this->w -= other.w);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
@@ -90,29 +95,35 @@ vector4<T>& vector4<T>::cross(vector4& other)
 template <typename T> requires std::is_arithmetic_v<T>
 vector4<T> vector4<T>::operator*(const vector4& other) const
 {
+    return vector4(other.x * this->x, other.y * this->y, other.z * this->z, other.w);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 vector4<T>& vector4<T>::operator*=(const vector4& other)
 {
+    return *this = *this * other;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 bool vector4<T>::operator==(const vector4& other) const
 {
+    return this->x == other.x && this->y == other.y && this->z == other.z;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 bool vector4<T>::operator!=(const vector4& other) const
 {
+    return this->x != other.x || this->y != other.y || this->z != other.z;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 auto vector4<T>::dot(const vector4& other) const
 {
+    return this->x * other.x + this->y * other.y + this->z * other.z;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 auto vector4<T>::euclidianDistance(const vector4& other) const
 {
-} // LinearAlgerba
+    
+} 
