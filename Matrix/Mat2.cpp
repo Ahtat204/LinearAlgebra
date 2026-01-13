@@ -105,11 +105,12 @@ Mat2<T> Mat2<T>::scaling(T x, T y)
 template <typename T> requires std::is_arithmetic_v<T>
 Mat2<T> Mat2<T>::translation(T x, T y)
 {
-    //needs 3x3 matrix 
+    return Mat2(x, 0, y, 0);
 }
 template <typename T> requires std::is_arithmetic_v<T>
 Mat2<T> Mat2<T>::projection(T x, T y, T width, T height)
 {
+    
 }
 
 
