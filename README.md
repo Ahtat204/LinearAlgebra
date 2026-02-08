@@ -1,4 +1,6 @@
-﻿1. Vector Classes
+![Status](https://img.shields.io/badge/status-ongoing-green?style=for-the-badge)
+ 
+ 1. Vector Classes
    Vector2, Vector3, and Vector4
 
 Common operations: addition, subtraction, dot product, cross product (for 3D), magnitude, normalization, scaling
