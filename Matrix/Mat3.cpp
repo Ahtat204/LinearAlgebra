@@ -9,21 +9,40 @@ using namespace LinearAlgebra;
 template <typename T> requires std::is_arithmetic_v<T>
     Mat3<T>::Mat3(T a, T b, T c, T d, T e, T f, T g, T h)
 {
+    this->a = a;
+    this->b = b;
+    this->c = c;
+    this->d = d;
+    this->e = c;
+    this->f = f;
+    this->g = g;
+    this->h = h;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 Mat3<T>::Mat3(T element)
 {
+    this->a = element;
+    this->b = element;
+    this->c = element;
+    this->d = element;
+    this->e = element;
+    this->f = element;
+    this->g = element;
+    this->h = element;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-bool Mat3<T>::operator==(Mat3<T> const& other) const
+bool Mat3<T>::operator==(Mat3 const& other) const
 {
+    bool equal = this->a == other.a && this->b == other.b && this->c == other.c && this->d == other.d && this->e == other.e && this->f == other.f && this->g == other.g && this->h == other.h;
+    return equal;
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-bool Mat3<T>::operator!=(Mat3<T> const& other) const
+bool Mat3<T>::operator!=(Mat3 const& other) const
 {
+    return !(*this == other);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
@@ -37,17 +56,18 @@ T Mat3<T>::operator[](int i, int j) const
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-Mat3<T> Mat3<T>::operator*(Mat3<T> const& other) const
+Mat3<T> Mat3<T>::operator*(Mat3 const& other) const
+{
+    
+}
+
+template <typename T> requires std::is_arithmetic_v<T>
+Mat3<T> Mat3<T>::operator+(Mat3 const& other) const
 {
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-Mat3<T> Mat3<T>::operator+(Mat3<T> const& other) const
-{
-}
-
-template <typename T> requires std::is_arithmetic_v<T>
-Mat3<T> Mat3<T>::operator-(Mat3<T> const& other) const
+Mat3<T> Mat3<T>::operator-(Mat3 const& other) const
 {
 }
 
