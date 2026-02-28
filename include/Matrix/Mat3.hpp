@@ -25,7 +25,6 @@ namespace LinearAlgebra
         Mat3()=default;
         bool operator==(Mat3<T> const& other) const;
         bool operator!=(Mat3<T> const& other) const;
-        T operator()(int i, int j) const;
         T operator[](int i,int j) const;
         Mat3 operator*(Mat3<T> const& other) const;
         Mat3 operator+(Mat3<T> const& other) const;

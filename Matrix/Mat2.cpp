@@ -43,7 +43,6 @@ template <typename T> requires std::is_arithmetic_v<T>
 Mat2<T> Mat2<T>::operator+(const Mat2& other) const
 {
     return Mat2(this->a+other.a, this->b+other.b, this->c+other.c, this->d+other.d);
-        
 }
 
 template <typename T> requires std::is_arithmetic_v<T>

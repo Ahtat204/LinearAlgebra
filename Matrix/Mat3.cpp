@@ -46,13 +46,9 @@ bool Mat3<T>::operator!=(Mat3 const& other) const
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
-T Mat3<T>::operator()(int i, int j) const
-{
-}
-
-template <typename T> requires std::is_arithmetic_v<T>
 T Mat3<T>::operator[](int i, int j) const
 {
+    return m[i][j];
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
