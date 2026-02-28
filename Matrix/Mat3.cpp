@@ -48,7 +48,7 @@ bool Mat3<T>::operator!=(Mat3 const& other) const
 template <typename T> requires std::is_arithmetic_v<T>
 T Mat3<T>::operator[](int i, int j) const
 {
-    return m[i][j];
+    
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
@@ -60,21 +60,25 @@ Mat3<T> Mat3<T>::operator*(Mat3 const& other) const
 template <typename T> requires std::is_arithmetic_v<T>
 Mat3<T> Mat3<T>::operator+(Mat3 const& other) const
 {
+    return new Mat3(this->a + other.a, this->b + other.b,this->c + other.c,this->d + other.d,this->e + other.e,this->f+other.f,this.g+other.g,this.h+other.h,this->i+other.i);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 Mat3<T> Mat3<T>::operator-(Mat3 const& other) const
 {
+    return new Mat3(this->a - other.a, this->b - other.b,this->c - other.c,this->d - other.d,this->e - other.e,this->f-other.f,this.g-other.g,this.h-other.h,this->i-other.i);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 Mat3<T> Mat3<T>::operator*(T const& other) const
 {
+    return new Mat3(this->a*other,this->b*other,this->c*other,this->d*other,this->e*other,this->f*other,this->g*other,this->h*other,this->i*other);
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
 auto Mat3<T>::determinant() const
 {
+    
 }
 
 template <typename T> requires std::is_arithmetic_v<T>
