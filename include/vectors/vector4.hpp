@@ -1,109 +1,99 @@
-﻿//
-// Created by lahce on 14/08/2025.
-//
+﻿
+#ifndef VECTOR4_HPP
+#define VECTOR4_HPP
 
-#ifndef VECTOR3_HPP
-#define VECTOR3_HPP
 #include <type_traits>
+#include <cmath>
 
+#if defined(__cplusplus) && __cplusplus >= 201703L
+#define __NODISCARD__ [[nodiscard]]
+#else
+#define __NODISCARD__
+#endif
 namespace LinearAlgebra {
 
-/**
- * @brief A 3D vector class template for arithmetic types.
- *
- * Represents a three-dimensional vector with arithmetic components.
- * Provides common vector operations including addition, subtraction,
- * scalar and component-wise multiplication, cross product, normalization,
- * dot product, and distance computation.
- *
- * @tparam T Must be an arithmetic type (int, float, double, etc.)
- */
 template <typename T> requires std::is_arithmetic_v<T>
 struct vector4
 {
-private:
-    T x; ///< The X-component of the vector
-    T y; ///< The Y-component of the vector
-    T z; ///< The Z-component of the vector
-    T w;
+    T x; ///< The X-component
+    T y; ///< The Y-component
+    T z; ///< The Z-component
+    T w; ///< The W-component
 
-public:
-    /**
-     * @brief Constructs a vector with given x, y, and z components.
-     * @param x The X-component
-     * @param y The Y-component
-     * @param z The Z-component
-     */
-    explicit vector4(T x, T y, T z,T w);
+    // Constructors
+    constexpr vector4() = default;
+    constexpr explicit vector4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) {}
+    constexpr explicit vector4(const T& val) : x(val), y(val), z(val), w(val) {}
 
-    /**
-     * @brief Default constructor. Leaves components uninitialized.
-     */
-    vector4() = default;
+    // Access by index
+    constexpr T operator[](int i) const {
+        switch(i) {
+            case 0: return x;
+            case 1: return y;
+            case 2: return z;
+            case 3: return w;
+            default: return T(); // fallback
+        }
+    }
+    __NODISCARD__ auto getMagnitude() const {
+        return std::sqrt(x*x + y*y + z*z + w*w);
+    }
 
-    /**
-     * @brief Constructs a vector with all components set to the same value.
-     * @param x The value to set for all components
-     */
-    explicit vector4(const T& x);
+    __NODISCARD__ bool isNormalized() const {
+        return std::abs(getMagnitude() - T(1)) < T(1e-6);
+    }
+    __NODISCARD__ vector4 normalize() const {
+        auto mag = getMagnitude();
+        return (mag == 0) ? vector4(0,0,0,0) : vector4(x/mag, y/mag, z/mag, w/mag);
+    }
+    constexpr vector4 operator+(const vector4& other) const {
+        return vector4(x + other.x, y + other.y, z + other.z, w + other.w);
+    }
+    constexpr vector4& operator+=(const vector4& other) {
+        x += other.x; y += other.y; z += other.z; w += other.w; return *this;
+    }
+    constexpr vector4 operator-(const vector4& other) const {
+        return vector4(x - other.x, y - other.y, z - other.z, w - other.w);
+    }
+    constexpr vector4& operator-=(const vector4& other) {
+        x -= other.x; y -= other.y; z -= other.z; w -= other.w; return *this;
+    }
+    constexpr vector4 operator*(T scalar) const {
+        return vector4(x * scalar, y * scalar, z * scalar, w * scalar);
+    }
+    constexpr vector4& operator*=(T scalar) {
+        x *= scalar; y *= scalar; z *= scalar; w *= scalar; return *this;
+    }
+    constexpr vector4 operator/(T scalar) const {
+        return vector4(x / scalar, y / scalar, z / scalar, w / scalar);
+    }
+    constexpr vector4& operator/=(T scalar) {
+        x /= scalar; y /= scalar; z /= scalar; w /= scalar; return *this;
+    }
+    constexpr vector4 operator*(const vector4& other) const {
+        return vector4(x * other.x, y * other.y, z * other.z, w * other.w);
+    }
 
-    /**
-     * @brief Access vector components by index.
-     * @param i Index of the component (0 for x, 1 for y, 2 for z)
-     * @return The value of the requested component
-     */
-    T constexpr operator[](int i) const;
+    constexpr vector4& operator*=(const vector4& other) {
+        x *= other.x; y *= other.y; z *= other.z; w *= other.w; return *this;
+    }
+    constexpr auto dot(const vector4& other) const {
+        return x * other.x + y * other.y + z * other.z + w * other.w;
+    }
+    auto euclidianDistance(const vector4& other) const {
+        return std::sqrt((x - other.x)*(x - other.x) +
+                         (y - other.y)*(y - other.y) +
+                         (z - other.z)*(z - other.z) +
+                         (w - other.w)*(w - other.w));
+    }
+    constexpr bool operator==(const vector4& other) const {
+        return x == other.x && y == other.y && z == other.z && w == other.w;
+    }
 
-    /**
-     * @brief Computes the magnitude (length) of the vector.
-     * @return Magnitude of the vector
-     */
-    [[nodiscard]] auto getMagnitude() const;
-
-    /**
-     * @brief Checks if the vector is normalized (magnitude == 1)
-     * @return true if the vector is normalized
-     */
-    [[nodiscard]] bool isNormalized() const;
-    /**
-     * @brief Returns a normalized vector (unit length in the same direction)
-     * @return Normalized vector
-     */
-    [[nodiscard]] vector4 normalize() const;
-    // Vector arithmetic operators
-    vector4 operator+(const vector4& other) const; ///< Vector addition
-    vector4& operator+=(const vector4& other);    ///< In-place vector addition
-    vector4 operator-(const vector4& other) const; ///< Vector subtraction
-    vector4& operator-=(const vector4& other);    ///< In-place vector subtraction
-    vector4& cross(vector4& other);               ///< Cross product (perpendicular vector) ,(this) x (other)
-    vector4 operator*(const vector4& other) const; ///< Component-wise multiplication
-    vector4& operator*=(const vector4& other);     ///< In-place component-wise multiplication
-    // Static vectors for convenience
-    // Comparison operators
-    bool operator==(const vector4& other) const; ///< Equality comparison
-    bool operator!=(const vector4& other) const; ///< Inequality comparison
-
-    /**
-     * @brief Computes the dot product of this vector with another.
-     * @param other The vector to dot with
-     * @return The dot product
-     */
-    auto dot(const vector4& other) const;
-
-    /**
-     * @brief Computes the Euclidean distance between this vector and another.
-     * @param other The other vector
-     * @return The Euclidean distance
-     */
-    auto euclidianDistance(const vector4& other) const;
+    constexpr bool operator!=(const vector4& other) const {
+        return !(*this == other);
+    }
 };
 
-
-} // namespace LinearAlgebra::vector
-
-// Aliases for common types
-using fvec4 = LinearAlgebra::vector4<float>;
-using dvec4 = LinearAlgebra::vector4<double>;
-using ivec4 = LinearAlgebra::vector4<int>;
-
-#endif // VECTOR3_HPP
+}
+#endif
