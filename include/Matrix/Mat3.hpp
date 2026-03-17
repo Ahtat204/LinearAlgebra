@@ -6,7 +6,7 @@
 #include <utility>
 #include <stdexcept>
 #include <iostream>
-
+#include"Mat2.hpp"
 namespace LinearAlgebra
 {
     template<typename T>
@@ -121,6 +121,9 @@ namespace LinearAlgebra
                                           1, 1, 1,
                                           1, 1, 1};
         static Mat3 rotation(T x, T y, T z){}
+        explicit operator Mat2<T>() const {
+            return Mat2<T>(this->m[0][0], this->m[0][1], this->m[0][2]);
+        }
     };
 }
 #endif
